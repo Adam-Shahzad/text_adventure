@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Player {
 	int x_Co_orrdinates;
@@ -93,16 +94,14 @@ public class Player {
 		}
 }
 
-	public String goal_compass(goal g,Player p){
+	public double compass(Place g,Player p){
 		
 		int x_diference =Math.abs((g.x_value-p.getX_Co_orrdinates()));
 		int y_diference=Math.abs((g.y_value-p.getY_Co_orrdinates()));
 		
 		double answer = x_diference*x_diference + y_diference*y_diference;
 		answer = Math.sqrt(answer);
-		String output = "You are " + answer + " m away";
-		
-		return output;
+		return answer;
 		
 	}
 
@@ -116,6 +115,16 @@ public class Player {
 	public boolean check_hit_points(Player p){
 		if (this.hit_points >0 ){return true;}
 		else {return false;}
+	}
+
+	public String look(Player p, ArrayList<Place> pl){
+		for (int i = 0; i<pl.size(); i++){
+			
+		}
+		
+		
+		return direction;
+		
 	}
 }
 

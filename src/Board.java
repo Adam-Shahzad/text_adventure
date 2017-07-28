@@ -8,15 +8,16 @@ public class Board {
 		Player p = new Player(0, 0, null);
 		goal g = new goal();
 		ArrayList<obsticle> oList = new ArrayList();
+		ArrayList<Place> pList = new ArrayList();
 
-		b.init(oList);
+		b.init(oList, pList, g);
 		b.start();
 
 		while (p.check_goal(g, p) == "empty" && p.check_hit_points(p)) {
 
 			System.out.println("Which Direction do you go?");
 			p.move(b.get_move());
-			System.out.println(p.getX_Co_orrdinates()+ "," +p.getY_Co_orrdinates());
+			System.out.println(p.getX_Co_orrdinates() + "," + p.getY_Co_orrdinates());
 			b.show_compass(p, g);
 
 			b.goal_status(g, p);
@@ -42,7 +43,7 @@ public class Board {
 	}
 
 	public void show_compass(Player p, goal g) {
-		System.out.println(p.goal_compass(g, p));
+		System.out.println("you are " + p.compass(g, p) + "m away");
 	}
 
 	public void goal_status(goal g, Player p) {
@@ -62,19 +63,28 @@ public class Board {
 		}
 	}
 
-	public void init(ArrayList<obsticle> oList) {
+	public void init(ArrayList<obsticle> oList, ArrayList<Place> pList, goal g) {
 
-		obsticle o1 = new obsticle(1, 2, "You Stubbed Your toe... like really hard. Cursing in anger you loose you balance and trip");
-		obsticle o2 = new obsticle(3, 1, "You suddenly realise you are all alone and will probably die. you break down crying");
-		obsticle o3 = new obsticle(0, -1, "A bear stares right at you, it decide it wants nothing to do with you and leaves, you follow it, you are now lost");
+		obsticle o1 = new obsticle(1, 2,
+				"You Stubbed Your toe... like really hard. Cursing in anger you loose you balance and trip");
+		obsticle o2 = new obsticle(3, 1,
+				"You suddenly realise you are all alone and will probably die. you break down crying");
+		obsticle o3 = new obsticle(0, -1,
+				"A bear stares right at you, it decide it wants nothing to do with you and leaves, you follow it, you are now lost");
 
 		oList.add(o1);
 		oList.add(o2);
 		oList.add(o3);
 
+		pList.add(o1);
+		pList.add(o2);
+		pList.add(o3);
+		pList.add(g);
 	}
 
-	public void printDeath(Player p){
-		if (p.check_hit_points(p)) {System.out.print("... you died");}
+	public void printDeath(Player p) {
+		if (p.check_hit_points(p)) {
+			System.out.print("... you died");
+		}
 	}
 }
