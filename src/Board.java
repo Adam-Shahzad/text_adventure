@@ -8,15 +8,15 @@ public class Board {
 		Player p = new Player(0, 0, null);
 		goal g = new goal();
 		ArrayList<obsticle> oList = new ArrayList();
-		ArrayList<Place> pList = new ArrayList();
 
-		b.init(oList, pList, g);
+		b.init(oList, g);
 		b.start();
 
 		while (p.check_goal(g, p) == "empty" && p.check_hit_points(p)) {
 
 			System.out.println("Which Direction do you go?");
-			p.move(b.get_move());
+			p.move(b.get_move(), p);
+
 			System.out.println(p.getX_Co_orrdinates() + "," + p.getY_Co_orrdinates());
 			b.show_compass(p, g);
 
@@ -31,8 +31,8 @@ public class Board {
 	}
 
 	public String get_move() {
-		Scanner sc = new Scanner(System.in);
-		return sc.nextLine();
+
+		return InputClass.sc.nextLine();
 	}
 
 	public void start() {
@@ -63,23 +63,40 @@ public class Board {
 		}
 	}
 
-	public void init(ArrayList<obsticle> oList, ArrayList<Place> pList, goal g) {
+	public void init(ArrayList<obsticle> oList, goal g) {
 
-		obsticle o1 = new obsticle(1, 2,
-				"You Stubbed Your toe... like really hard. Cursing in anger you loose you balance and trip");
-		obsticle o2 = new obsticle(3, 1,
-				"You suddenly realise you are all alone and will probably die. you break down crying");
-		obsticle o3 = new obsticle(0, -1,
-				"A bear stares right at you, it decide it wants nothing to do with you and leaves, you follow it, you are now lost");
+		obsticle o1 = new obsticle((Random_num.rn.nextInt(4 - 0 + 1) + 0), (Random_num.rn.nextInt(4 - 0 + 1) + 0),
+				"You Stubbed Your toe... like really hard. Cursing in anger you loose you balance and trip", 1);
+		obsticle o2 = new obsticle((Random_num.rn.nextInt(4 - 0 + 1) + 0), (Random_num.rn.nextInt(4 - 0 + 1) + 0),
+				"You suddenly realise you are all alone and will probably die. you break down crying", 1);
+		obsticle o3 = new obsticle((Random_num.rn.nextInt(4 - 0 + 1) + 0), (Random_num.rn.nextInt(4 - 0 + 1) + 0),
+				"A bear stares right at you, it decide it wants nothing to do with you and leaves, you follow it, you are now lost",
+				0);
+		obsticle o4 = new obsticle((Random_num.rn.nextInt(4 - 0 + 1) + 0), (Random_num.rn.nextInt(4 - 0 + 1) + 0),
+				"you find an Envelope, It is addressed to you, The envelope itself is almost ornate in nature, definitaly different from the forrest.\nYou Struggle to Open it, almost destroying what clue lies inside.\n Written on it is a single word... disappointing",
+				0);
+		obsticle o5 = new obsticle((Random_num.rn.nextInt(4 - 0 + 1) + 0), (Random_num.rn.nextInt(4 - 0 + 1) + 0),
+				"you see a forrest creature, you consumed it essence... you monster. gained a life",
+				-1);
+		obsticle o6 = new obsticle((Random_num.rn.nextInt(4 - 0 + 1) + 0), (Random_num.rn.nextInt(4 - 0 + 1) + 0),
+				"you think you are at the goal, keyword being think, you are actually at the start",
+				0);
+		obsticle o7 = new obsticle((Random_num.rn.nextInt(4 - 0 + 1) + 0), (Random_num.rn.nextInt(4 - 0 + 1) + 0),
+				"\nyou die in a tunnel",
+				0);
+		obsticle o8 = new obsticle(-1, 1,
+				"you see a sign saying your going the wrong way",
+				0);
+		
 
 		oList.add(o1);
 		oList.add(o2);
 		oList.add(o3);
+		oList.add(o4);
+		oList.add(o5);
+		oList.add(o7);
+		oList.add(o8);
 
-		pList.add(o1);
-		pList.add(o2);
-		pList.add(o3);
-		pList.add(g);
 	}
 
 	public void printDeath(Player p) {

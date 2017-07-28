@@ -47,7 +47,7 @@ public class Player {
 		this.direction = direction;
 	}
 
-	public void move(String direction) {
+	public void move(String direction, Player p) {
 
 		switch (direction) {
 		case "n":
@@ -85,7 +85,7 @@ public class Player {
 		
 		if (this.x_Co_orrdinates==o.x_value && this.y_Co_orrdinates == o.y_value)
 		{
-			this.setHit_points(this.getHit_points()-1);
+			this.setHit_points(this.getHit_points()-o.damage);
 			return o.return_text(p);
 		}
 		else 
@@ -94,7 +94,7 @@ public class Player {
 		}
 }
 
-	public double compass(Place g,Player p){
+	public double compass(goal g,Player p){
 		
 		int x_diference =Math.abs((g.x_value-p.getX_Co_orrdinates()));
 		int y_diference=Math.abs((g.y_value-p.getY_Co_orrdinates()));
@@ -117,13 +117,8 @@ public class Player {
 		else {return false;}
 	}
 
-	public String look(Player p, ArrayList<Place> pl){
-		for (int i = 0; i<pl.size(); i++){
-			
-		}
-		
-		
-		return direction;
+	public void look(){
+		System.out.println("Your in a forrest");
 		
 	}
 }
