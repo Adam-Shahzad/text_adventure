@@ -105,5 +105,17 @@ public class Player {
 		return output;
 		
 	}
+
+	public String look_around(Place og, Player p)
+	{
+		
+		return "";
+		
+	}
+	
+	public boolean check_hit_points(Player p){
+		if (this.hit_points >0 ){return true;}
+		else {return false;}
+	}
 }
 
